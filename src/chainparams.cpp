@@ -108,19 +108,26 @@ public:
         // consensus.BitcoinPostforkTime = 1508808039;
         // //------------------------------------------------------------------------------------------------------
 
-        //------------------------------------------------------------------------------------------------------
-        ///point to height Block #500000
-        consensus.UBTHeight = 500000; 
-        consensus.BitcoinPostforkBlock = uint256S("00000000000000000024fb37364cbf81fd49cc2d51c09c75c35433c3a1945d04");
-        consensus.BitcoinPostforkTime = 1513593325;     
-        //------------------------------------------------------------------------------------------------------
+        // //------------------------------------------------------------------------------------------------------
+        // ///point to height Block #500000
+        // consensus.UBTHeight = 500000; 
+        // consensus.BitcoinPostforkBlock = uint256S("00000000000000000024fb37364cbf81fd49cc2d51c09c75c35433c3a1945d04");
+        // consensus.BitcoinPostforkTime = 1513593325;     
+        // //------------------------------------------------------------------------------------------------------
 
         // //------------------------------------------------------------------------------------------------------
         // ///point to height Block #100000
         // consensus.UBTHeight = 100000; 
         // consensus.BitcoinPostforkBlock = uint256S("000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506");
         // consensus.BitcoinPostforkTime = 1293595063;     
-        // //------------------------------------------------------------------------------------------------------        
+        // //------------------------------------------------------------------------------------------------------     
+
+        //------------------------------------------------------------------------------------------------------
+        ///point to height Block #503888
+        consensus.UBTHeight = 503888; 
+        consensus.BitcoinPostforkBlock = uint256S("000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506");
+        consensus.BitcoinPostforkTime = 1293595063;     
+        //------------------------------------------------------------------------------------------------------             
 
         consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.powLimitStart = uint256S("0000000fffffffffffffffffffffffffffffffffffffffffffffffffffffffff");

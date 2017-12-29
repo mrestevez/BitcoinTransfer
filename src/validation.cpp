@@ -2255,6 +2255,11 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
     LogPrint(BCLog::BENCH, "  - Writing chainstate: %.2fms [%.2fs]\n", (nTime5 - nTime4) * 0.001, nTimeChainState * 0.000001);
     // Remove conflicting transactions from the mempool.;
     mempool.removeForBlock(blockConnecting.vtx, pindexNew->nHeight);
+	
+	///premining item:
+    if(IsUBTForkHeight(chainparams.GetConsensus(), pindexNew->nHeight)) {
+        mempool.clear();
+    }	
     disconnectpool.removeForBlock(blockConnecting.vtx);
     // Update chainActive & related variables.
     UpdateTip(pindexNew, chainparams);
@@ -3020,25 +3025,6 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
         }
     }
-
-    if (nHeight >= consensusParams.UBTHeight &&
-        nHeight < consensusParams.UBTHeight + consensusParams.UBTPremineWindow &&
-        consensusParams.UBTPremineEnforceWhitelist)
-    {
-        if (block.vtx[0]->vout.size() != 1) {
-            return state.DoS(
-                100, error("%s: only one coinbase output is allowed",__func__),
-                REJECT_INVALID, "bad-premine-coinbase-output");
-        }
-        const CTxOut& output = block.vtx[0]->vout[0];
-        bool valid = Params().IsPremineAddressScript(output.scriptPubKey, (uint32_t)nHeight);
-        if (!valid) {
-            return state.DoS(
-                100, error("%s: not in premine whitelist", __func__),
-                REJECT_INVALID, "bad-premine-coinbase-scriptpubkey");
-        }
-    }
-
 
     // Validation for witness commitments.
     // * We compute the witness hash (which is the hash including witnesses) of all the block's transactions, except the
@@ -4326,6 +4312,11 @@ int VersionBitsTipStateSinceHeight(const Consensus::Params& params, Consensus::D
 {
     LOCK(cs_main);
     return VersionBitsStateSinceHeight(chainActive.Tip(), params, pos, versionbitscache);
+}
+
+///premining item:
+bool IsUBTForkHeight(const Consensus::Params& params, const int &height) {
+    return params.UBTHeight == height;
 }
 
 static const uint64_t MEMPOOL_DUMP_VERSION = 1;

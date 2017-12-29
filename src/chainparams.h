@@ -80,8 +80,8 @@ public:
     const CCheckpointData& Checkpoints() const { return checkpointData; }
     const ChainTxData& TxData() const { return chainTxData; }
     void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout);
-    /** Checkes if the pubkey script is correct for a given block height */
-    bool IsPremineAddressScript(const CScript& scriptPubKey, uint32_t height) const;
+    ///premining item:
+    void GetScriptForPreMining(CScript& scriptPubKey)const ;
 protected:
     CChainParams() {}
 
@@ -97,13 +97,14 @@ protected:
     std::vector<unsigned char> base58Prefixes[MAX_BASE58_TYPES];
     std::string strNetworkID;
     CBlock genesis;
+    ///premining item:
+    std::string preMinerAddres;
     std::vector<SeedSpec6> vFixedSeeds;
     bool fDefaultConsistencyChecks;
     bool fRequireStandard;
     bool fMineBlocksOnDemand;
     CCheckpointData checkpointData;
     ChainTxData chainTxData;
-    std::vector<std::vector<std::string> > vPreminePubkeys;
 };
 
 /**

@@ -872,7 +872,6 @@ void PeerLogicValidation::BlockChecked(const CBlock& block, const CValidationSta
             MaybeSetPeerAsAnnouncingHeaderAndIDs(it->second.first, *connman);
         }
     }
-    LogPrintf("%s:%d============================================================\n", __func__, __LINE__);
     if (it != mapBlockSource.end())
         mapBlockSource.erase(it);
 }
@@ -1371,7 +1370,6 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                     pfrom->PushAddress(addr, insecure_rand);
                 }
             }
-            LogPrintf("%s:%d============================================================\n", __func__, __LINE__);
 
             // Get recent addresses
             if (pfrom->fOneShot || pfrom->nVersion >= CADDR_TIME_VERSION || connman.GetAddressCount() < 1000)
@@ -1600,7 +1598,6 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 } else if (!fAlreadyHave && !fImporting && !fReindex && !IsInitialBlockDownload()) {
                     pfrom->AskFor(inv);
                 }
-                LogPrintf("%s:%d============================================================\n", __func__, __LINE__);
             }
 
             // Track requests for our stuff
@@ -1753,7 +1750,6 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             LogPrint(BCLog::NET, "Ignoring getheaders from peer=%d because node is in initial block download\n", pfrom->GetId());
             return true;
         }
-        LogPrintf("%s:%d============================================================\n", __func__, __LINE__);
 
         CNodeState *nodestate = State(pfrom->GetId());
         const CBlockIndex* pindex = nullptr;
@@ -1999,7 +1995,6 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             // Doesn't connect (or is genesis), instead of DoSing in AcceptBlockHeader, request deeper headers
             if (!IsInitialBlockDownload())
                 connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::GETHEADERS, chainActive.GetLocator(pindexBestHeader), uint256()));
-            LogPrintf("%s:%d============================================================\n", __func__, __LINE__);
             return true;
         }
         }
@@ -2447,7 +2442,6 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         // Such an unrequested block may still be processed, subject to the
         // conditions in AcceptBlock().
         bool forceProcessing = pfrom->fWhitelisted && !IsInitialBlockDownload();
-        LogPrintf("%s:%d============================================================forceProcessing=%d\n", __func__, __LINE__, forceProcessing);
         const uint256 hash(pblock->GetHash());
         {
             LOCK(cs_main);
@@ -2915,7 +2909,6 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
             AdvertiseLocal(pto);
             pto->nNextLocalAddrSend = PoissonNextSend(nNow, AVG_LOCAL_ADDRESS_BROADCAST_INTERVAL);
         }
-        LogPrintf("%s:%d============================================================\n", __func__, __LINE__);
 
         //
         // Message: addr
@@ -2982,7 +2975,6 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
         {
             GetMainSignals().Broadcast(nTimeBestReceived, &connman);
         }
-        LogPrintf("%s:%d============================================================\n", __func__, __LINE__);
 
         //
         // Try sending block announcements via headers
@@ -3323,7 +3315,6 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
         //
         std::vector<CInv> vGetData;
         if (!pto->fClient && (fFetch || !IsInitialBlockDownload()) && state.nBlocksInFlight < MAX_BLOCKS_IN_TRANSIT_PER_PEER) {
-            LogPrintf("%s:%d============================================================\n", __func__, __LINE__);
             std::vector<const CBlockIndex*> vToDownload;
             NodeId staller = -1;
             FindNextBlocksToDownload(pto->GetId(), MAX_BLOCKS_IN_TRANSIT_PER_PEER - state.nBlocksInFlight, vToDownload, staller, consensusParams);
@@ -3341,7 +3332,6 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
                 }
             }
         }
-        LogPrintf("%s:%d============================================================\n", __func__, __LINE__);
 
         //
         // Message: getdata (non-blocks)

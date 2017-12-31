@@ -1063,40 +1063,25 @@ bool IsInitialBlockDownload()
     // Once this function has returned false, it must remain false.
     static std::atomic<bool> latchToFalse{false};
     // Optimization: pre-test latch before taking the lock.
-    if (latchToFalse.load(std::memory_order_relaxed)){
-        LogPrintf("%s:%d============================================================false\n", __func__, __LINE__);
+    if (latchToFalse.load(std::memory_order_relaxed))
         return false;
-    }
 
     LOCK(cs_main);
-    if (latchToFalse.load(std::memory_order_relaxed)){
-        LogPrintf("%s:%d============================================================false\n", __func__, __LINE__);
+    if (latchToFalse.load(std::memory_order_relaxed))
         return false;
-    }
-    if (fImporting || fReindex){
-        LogPrintf("%s:%d============================================================true\n", __func__, __LINE__);
-        return true;        
-    }
-    if (chainActive.Tip() == nullptr){
-        LogPrintf("%s:%d============================================================true\n", __func__, __LINE__);
-        return true;        
-    }
-    if (chainActive.Tip()->nChainWork < UintToArith256(chainParams.GetConsensus().nMinimumChainWork)){
-        LogPrintf("%s:%d============================================================true\n", __func__, __LINE__);
-        return true;        
-    }
-    if (fSkipHardforkIBD && chainActive.Tip()->nHeight + 1 >= (int)chainParams.GetConsensus().UBTHeight){
-        LogPrintf("%s:%d============================================================false\n", __func__, __LINE__);
+    if (fImporting || fReindex)
+        return true;
+    if (chainActive.Tip() == nullptr)
+        return true;
+    if (chainActive.Tip()->nChainWork < UintToArith256(chainParams.GetConsensus().nMinimumChainWork))
+        return true;
+    if (fSkipHardforkIBD && chainActive.Tip()->nHeight + 1 >= (int)chainParams.GetConsensus().UBTHeight)
         return false;
-    }
     int64_t target_time = fBTGBootstrapping ? (int64_t)chainParams.GetConsensus().BitcoinPostforkTime : GetTime();
-    if (chainActive.Tip()->GetBlockTime() < (target_time - nMaxTipAge)){
-        LogPrintf("%s:%d============================================================true\n", __func__, __LINE__);
-        return true;        
-    }
+    if (chainActive.Tip()->GetBlockTime() < (target_time - nMaxTipAge))
+        return true;
     LogPrintf("Leaving InitialBlockDownload (latching to false)\n");
     latchToFalse.store(true, std::memory_order_relaxed);
-    LogPrintf("%s:%d============================================================false\n", __func__, __LINE__);
     return false;
 }
 

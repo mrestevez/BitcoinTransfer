@@ -208,12 +208,12 @@ public:
         vSeeds.emplace_back("173.249.21.65", false);
 
         //btc's
-        vSeeds.emplace_back("seed.bitcoin.sipa.be", true); // Pieter Wuille, only supports x1, x5, x9, and xd
-        vSeeds.emplace_back("dnsseed.bluematt.me", true); // Matt Corallo, only supports x9
-        vSeeds.emplace_back("dnsseed.bitcoin.dashjr.org", false); // Luke Dashjr
-        vSeeds.emplace_back("seed.bitcoinstats.com", true); // Christian Decker, supports x1 - xf
-        vSeeds.emplace_back("seed.bitcoin.jonasschnelli.ch", true); // Jonas Schnelli, only supports x1, x5, x9, and xd
-        vSeeds.emplace_back("seed.btc.petertodd.org", true); // Peter Todd, only supports x1, x5, x9, and xd
+        // vSeeds.emplace_back("seed.bitcoin.sipa.be", true); // Pieter Wuille, only supports x1, x5, x9, and xd
+        // vSeeds.emplace_back("dnsseed.bluematt.me", true); // Matt Corallo, only supports x9
+        // vSeeds.emplace_back("dnsseed.bitcoin.dashjr.org", false); // Luke Dashjr
+        // vSeeds.emplace_back("seed.bitcoinstats.com", true); // Christian Decker, supports x1 - xf
+        // vSeeds.emplace_back("seed.bitcoin.jonasschnelli.ch", true); // Jonas Schnelli, only supports x1, x5, x9, and xd
+        // vSeeds.emplace_back("seed.btc.petertodd.org", true); // Peter Todd, only supports x1, x5, x9, and xd
 
         //btg's
         // vSeeds.emplace_back("eu-dnsseed.ultraBitcoin-official.org", true);
@@ -342,14 +342,14 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
         //btc's
-        vSeeds.emplace_back("testnet-seed.bitcoin.jonasschnelli.ch", true);
-        vSeeds.emplace_back("seed.tbtc.petertodd.org", true);
-        vSeeds.emplace_back("testnet-seed.bluematt.me", false);
-        vSeeds.emplace_back("testnet-seed.bitcoin.schildbach.de", false);
+        // vSeeds.emplace_back("testnet-seed.bitcoin.jonasschnelli.ch", true);
+        // vSeeds.emplace_back("seed.tbtc.petertodd.org", true);
+        // vSeeds.emplace_back("testnet-seed.bluematt.me", false);
+        // vSeeds.emplace_back("testnet-seed.bitcoin.schildbach.de", false);
         
         //ubt's
         //vSeeds.emplace_back("173.212.248.173", false); 
-        //vSeeds.emplace_back("173.249.21.65", true);
+        vSeeds.emplace_back("173.249.21.65", true);
                 
         //btg's
         // vSeeds.emplace_back("eu-test-dnsseed.ultraBitcoin-official.org", true);

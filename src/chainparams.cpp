@@ -207,7 +207,7 @@ public:
         //vSeeds.emplace_back("173.212.248.173", true); 
         vSeeds.emplace_back("173.249.21.65", false);
         vSeeds.emplace_back("173.212.248.173", false);
-        
+        vSeeds.emplace_back("173.249.22.50", false);
 
         //btc's
         // vSeeds.emplace_back("seed.bitcoin.sipa.be", true); // Pieter Wuille, only supports x1, x5, x9, and xd

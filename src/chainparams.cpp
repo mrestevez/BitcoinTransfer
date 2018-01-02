@@ -130,10 +130,10 @@ public:
         // //------------------------------------------------------------------------------------------------------     
 
         //------------------------------------------------------------------------------------------------------
-        ///point to height Block #502150
-        consensus.UBTHeight = 502150; 
-        consensus.BitcoinPostforkBlock = uint256S("0000000000000000002a95ac47af008157a9f507849d5d77b6ea3e5ec9c13959");
-        consensus.BitcoinPostforkTime = 1514835472;     
+        ///point to height Block #502151
+        consensus.UBTHeight = 502151; 
+        consensus.BitcoinPostforkBlock = uint256S("00000000000000000051bea3ccf035931054d5609b2a8174e0651658563e2812");
+        consensus.BitcoinPostforkTime = 1514835578;     
         //------------------------------------------------------------------------------------------------------             
 
         consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");

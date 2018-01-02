@@ -1842,10 +1842,12 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
 
     CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
     if (block.vtx[0]->GetValueOut() > blockReward)
-        return state.DoS(100,
-                         error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
-                               block.vtx[0]->GetValueOut(), blockReward),
-                               REJECT_INVALID, "bad-cb-amount");
+        if(!IsUBTForkHeight(chainparams.GetConsensus(), pindex->nHeight)){
+            return state.DoS(100,
+                 error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
+                       block.vtx[0]->GetValueOut(), blockReward),
+                       REJECT_INVALID, "bad-cb-amount");
+        }
 
     if (!control.Wait())
         return state.DoS(100, error("%s: CheckQueue failed", __func__), REJECT_INVALID, "block-validation-failed");

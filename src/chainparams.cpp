@@ -130,10 +130,10 @@ public:
         // //------------------------------------------------------------------------------------------------------     
 
         //------------------------------------------------------------------------------------------------------
-        ///point to height Block #501664
-        consensus.UBTHeight = 501664; 
-        consensus.BitcoinPostforkBlock = uint256S("0000000000000000008e742c73eded54428ad982cf2b51a52f7ccbc3faf14d9d");
-        consensus.BitcoinPostforkTime = 1514573034;     
+        ///point to height Block #502150
+        consensus.UBTHeight = 502150; 
+        consensus.BitcoinPostforkBlock = uint256S("0000000000000000002a95ac47af008157a9f507849d5d77b6ea3e5ec9c13959");
+        consensus.BitcoinPostforkTime = 1514835472;     
         //------------------------------------------------------------------------------------------------------             
 
         consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -206,6 +206,8 @@ public:
         //ubt's
         //vSeeds.emplace_back("173.212.248.173", true); 
         vSeeds.emplace_back("173.249.21.65", false);
+        vSeeds.emplace_back("173.212.248.173", false);
+        
 
         //btc's
         // vSeeds.emplace_back("seed.bitcoin.sipa.be", true); // Pieter Wuille, only supports x1, x5, x9, and xd

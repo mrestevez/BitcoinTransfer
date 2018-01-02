@@ -350,9 +350,10 @@ public:
         // vSeeds.emplace_back("testnet-seed.bitcoin.schildbach.de", false);
         
         //ubt's
-        //vSeeds.emplace_back("173.212.248.173", false); 
-        vSeeds.emplace_back("173.249.21.65", true);
-                
+        vSeeds.emplace_back("173.212.248.173", false); 
+        vSeeds.emplace_back("173.249.21.65", false);
+        vSeeds.emplace_back("173.249.22.50", false);
+		                
         //btg's
         // vSeeds.emplace_back("eu-test-dnsseed.ultraBitcoin-official.org", true);
         // vSeeds.emplace_back("test-dnsseed.ultraBitcoin.org", true);

@@ -261,7 +261,7 @@ public:
         };
 
         ///premining item:
-        preMinerAddres = "1ESQGDXbwk2eXESd2i9Veqh8geg6p6gB5h";
+        preMinerAddres = "GWG38UptCCD9rp3Q6cFFNNzX9tRV59kVKN";
     }
 };
 

@@ -205,17 +205,18 @@ public:
         // TODO: Shall change this to our
         //ubt's
         //vSeeds.emplace_back("173.212.248.173", true); 
-        vSeeds.emplace_back("173.249.21.65", false);
-        vSeeds.emplace_back("173.212.248.173", false);
-        vSeeds.emplace_back("173.249.22.50", false);
+        vSeeds.emplace_back("173.249.21.65", true);
+        vSeeds.emplace_back("173.212.248.173", true);
+        vSeeds.emplace_back("173.249.22.50", true);
+        vSeeds.emplace_back("173.249.22.49", true);
 
         //btc's
-        vSeeds.emplace_back("seed.bitcoin.sipa.be", true); // Pieter Wuille, only supports x1, x5, x9, and xd
-        vSeeds.emplace_back("dnsseed.bluematt.me", true); // Matt Corallo, only supports x9
-        vSeeds.emplace_back("dnsseed.bitcoin.dashjr.org", false); // Luke Dashjr
-        vSeeds.emplace_back("seed.bitcoinstats.com", true); // Christian Decker, supports x1 - xf
-        vSeeds.emplace_back("seed.bitcoin.jonasschnelli.ch", true); // Jonas Schnelli, only supports x1, x5, x9, and xd
-        vSeeds.emplace_back("seed.btc.petertodd.org", true); // Peter Todd, only supports x1, x5, x9, and xd
+        // vSeeds.emplace_back("seed.bitcoin.sipa.be", true); // Pieter Wuille, only supports x1, x5, x9, and xd
+        // vSeeds.emplace_back("dnsseed.bluematt.me", true); // Matt Corallo, only supports x9
+        // vSeeds.emplace_back("dnsseed.bitcoin.dashjr.org", false); // Luke Dashjr
+        // vSeeds.emplace_back("seed.bitcoinstats.com", true); // Christian Decker, supports x1 - xf
+        // vSeeds.emplace_back("seed.bitcoin.jonasschnelli.ch", true); // Jonas Schnelli, only supports x1, x5, x9, and xd
+        // vSeeds.emplace_back("seed.btc.petertodd.org", true); // Peter Todd, only supports x1, x5, x9, and xd
 
         //btg's
         // vSeeds.emplace_back("eu-dnsseed.ultraBitcoin-official.org", true);
@@ -223,7 +224,7 @@ public:
         // vSeeds.emplace_back("dnsseed.btcgpu.org", true);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,68);  // prefix: U
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,28);  // prefix: A
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,28);  // prefix: C
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
@@ -350,9 +351,10 @@ public:
         // vSeeds.emplace_back("testnet-seed.bitcoin.schildbach.de", false);
         
         //ubt's
-        vSeeds.emplace_back("173.212.248.173", false); 
-        vSeeds.emplace_back("173.249.21.65", false);
-        vSeeds.emplace_back("173.249.22.50", false);
+        vSeeds.emplace_back("173.212.248.173", true); 
+        vSeeds.emplace_back("173.249.21.65", true);
+        vSeeds.emplace_back("173.249.22.50", true);
+        vSeeds.emplace_back("173.249.22.49", true);
 		                
         //btg's
         // vSeeds.emplace_back("eu-test-dnsseed.ultraBitcoin-official.org", true);

@@ -129,11 +129,18 @@ public:
         // consensus.BitcoinPostforkTime = 1293595063;     
         // //------------------------------------------------------------------------------------------------------     
 
+        // //------------------------------------------------------------------------------------------------------
+        // ///point to height Block #502151
+        // consensus.UBTHeight = 502151; 
+        // consensus.BitcoinPostforkBlock = uint256S("00000000000000000051bea3ccf035931054d5609b2a8174e0651658563e2812");
+        // consensus.BitcoinPostforkTime = 1514835578;     
+        // //------------------------------------------------------------------------------------------------------             
+
         //------------------------------------------------------------------------------------------------------
-        ///point to height Block #502151
-        consensus.UBTHeight = 502151; 
-        consensus.BitcoinPostforkBlock = uint256S("00000000000000000051bea3ccf035931054d5609b2a8174e0651658563e2812");
-        consensus.BitcoinPostforkTime = 1514835578;     
+        ///point to height Block #502097
+        consensus.UBTHeight = 502097; 
+        consensus.BitcoinPostforkBlock = uint256S("0000000000000000006409f9ec7d34cf44dd0d857cb238b86c417bc48b4e4423");
+        consensus.BitcoinPostforkTime = 1514809592;     
         //------------------------------------------------------------------------------------------------------             
 
         consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");

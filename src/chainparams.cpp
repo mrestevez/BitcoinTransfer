@@ -382,7 +382,7 @@ public:
         fMineBlocksOnDemand = false;
 
         ///premining item:
-        preMinerAddres = "1CMipMsDmdoHEEMPJuZZwPa8i8G1e1KC2S";
+        preMinerAddres = "mxvdm6AU5JgmFJcBSWCiShREcT9NDwespN";
 
         checkpointData = (CCheckpointData) {
             {
@@ -476,7 +476,7 @@ public:
         fMineBlocksOnDemand = true;
 
         ///premining item:
-        preMinerAddres =  "1F2QNGf7tMiaM9zcjSae4amxwVVU9TZo4y";
+        preMinerAddres =  "mnyrWWxLvMHNeJrrmemcdWJ7fwsVvBzsid";
 
         checkpointData = (CCheckpointData) {
             {

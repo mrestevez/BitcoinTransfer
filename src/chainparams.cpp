@@ -138,9 +138,9 @@ public:
 
         //------------------------------------------------------------------------------------------------------
         ///point to height Block #503888
-        consensus.UBTHeight = 503888; 
-        consensus.BitcoinPostforkBlock = uint256S("0000000000000000006666666666666666666666666666666666666666666688");
-        consensus.BitcoinPostforkTime = 1515730396;     
+        consensus.UBTHeight = 502097;
+        consensus.BitcoinPostforkBlock = uint256S("0000000000000000006409f9ec7d34cf44dd0d857cb238b86c417bc48b4e4423");
+        consensus.BitcoinPostforkTime = 1514809592;
         //------------------------------------------------------------------------------------------------------             
 
         consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -211,18 +211,18 @@ public:
         // nodes with support for servicebits filtering should be at the top
         // TODO: Shall change this to our
         //ubt's
-        // vSeeds.emplace_back("173.249.21.65", true);
-        // vSeeds.emplace_back("173.212.248.173", true);
-        // vSeeds.emplace_back("173.249.22.50", true);
-        // vSeeds.emplace_back("173.249.22.49", true);
+        vSeeds.emplace_back("173.249.21.65", true);
+        vSeeds.emplace_back("173.212.248.173", true);
+        vSeeds.emplace_back("173.249.22.50", true);
+        vSeeds.emplace_back("173.249.22.49", true);
 
         //btc's
-        vSeeds.emplace_back("seed.bitcoin.sipa.be", true); // Pieter Wuille, only supports x1, x5, x9, and xd
-        vSeeds.emplace_back("dnsseed.bluematt.me", true); // Matt Corallo, only supports x9
-        vSeeds.emplace_back("dnsseed.bitcoin.dashjr.org", false); // Luke Dashjr
-        vSeeds.emplace_back("seed.bitcoinstats.com", true); // Christian Decker, supports x1 - xf
-        vSeeds.emplace_back("seed.bitcoin.jonasschnelli.ch", true); // Jonas Schnelli, only supports x1, x5, x9, and xd
-        vSeeds.emplace_back("seed.btc.petertodd.org", true); // Peter Todd, only supports x1, x5, x9, and xd
+        // vSeeds.emplace_back("seed.bitcoin.sipa.be", true); // Pieter Wuille, only supports x1, x5, x9, and xd
+        // vSeeds.emplace_back("dnsseed.bluematt.me", true); // Matt Corallo, only supports x9
+        // vSeeds.emplace_back("dnsseed.bitcoin.dashjr.org", false); // Luke Dashjr
+        // vSeeds.emplace_back("seed.bitcoinstats.com", true); // Christian Decker, supports x1 - xf
+        // vSeeds.emplace_back("seed.bitcoin.jonasschnelli.ch", true); // Jonas Schnelli, only supports x1, x5, x9, and xd
+        // vSeeds.emplace_back("seed.btc.petertodd.org", true); // Peter Todd, only supports x1, x5, x9, and xd
 
         //btg's
         // vSeeds.emplace_back("eu-dnsseed.ultraBitcoin-official.org", true);

@@ -14,4 +14,4 @@ This is the staging tree of BitcoinTransfer. If you don’t understand what you 
 
 * Website: http://bitcoinTransfer.org
 * Slack: [invitation](https://join.slack.com/t/bitcoin-transfer/shared_invite/enQtMjY1MzkzMzUxNjY4LWM1YmQ4MjZhZTQxMWE1ZDQyNjA4N2QwZTkyZjYzMjhiMzdlMmVkNjQ3NzZlZDdmMDE4NWIyY2JmYzdjYmE2MzA)
-* TODO-list: https://trello.com/b/P1rLw1G9/bitcoin-transfer-todos
+

@@ -17,9 +17,9 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(UBT);
-    unitlist.append(mUBT);
-    unitlist.append(uUBT);
+    unitlist.append(BTS);
+    unitlist.append(mBTS);
+    unitlist.append(uBTS);
     return unitlist;
 }
 
@@ -27,9 +27,9 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case UBT:
-    case mUBT:
-    case uUBT:
+    case BTS:
+    case mBTS:
+    case uBTS:
         return true;
     default:
         return false;
@@ -40,9 +40,9 @@ QString BitcoinUnits::name(int unit)
 {
     switch(unit)
     {
-    case UBT: return QString("UBT");
-    case mUBT: return QString("mUBT");
-    case uUBT: return QString::fromUtf8("μUBT");
+    case BTS: return QString("BTS");
+    case mBTS: return QString("mBTS");
+    case uBTS: return QString::fromUtf8("μBTS");
     default: return QString("???");
     }
 }
@@ -51,9 +51,9 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case UBT: return QString("Bitcoins");
-    case mUBT: return QString("Milli-Bitcoins (1 / 1" THIN_SP_UTF8 "000)");
-    case uUBT: return QString("Micro-Bitcoins (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case BTS: return QString("Bitcoins");
+    case mBTS: return QString("Milli-Bitcoins (1 / 1" THIN_SP_UTF8 "000)");
+    case uBTS: return QString("Micro-Bitcoins (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
@@ -62,9 +62,9 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case UBT:  return 100000000;
-    case mUBT: return 100000;
-    case uUBT: return 100;
+    case BTS:  return 100000000;
+    case mBTS: return 100000;
+    case uBTS: return 100;
     default:   return 100000000;
     }
 }
@@ -73,9 +73,9 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case UBT: return 8;
-    case mUBT: return 5;
-    case uUBT: return 2;
+    case BTS: return 8;
+    case mBTS: return 5;
+    case uBTS: return 2;
     default: return 0;
     }
 }

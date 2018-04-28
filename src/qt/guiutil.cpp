@@ -186,7 +186,7 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!BitcoinUnits::parse(BitcoinUnits::UBT, i->second, &rv.amount))
+                if(!BitcoinUnits::parse(BitcoinUnits::BTS, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -225,7 +225,7 @@ QString formatBitcoinURI(const SendCoinsRecipient &info)
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::UBT, info.amount, false, BitcoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::BTS, info.amount, false, BitcoinUnits::separatorNever));
         paramCount++;
     }
 
@@ -427,7 +427,7 @@ bool openBitcoinConf()
     
     configFile.close();
     
-    /* Open ultraBitcoin.conf with the associated application */
+    /* Open bitcoinTransfer.conf with the associated application */
     return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
 

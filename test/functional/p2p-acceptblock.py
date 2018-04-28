@@ -57,8 +57,8 @@ from test_framework.blocktools import create_block, create_coinbase
 class AcceptBlockTest(BitcoinTestFramework):
     def add_options(self, parser):
         parser.add_option("--testbinary", dest="testbinary",
-                          default=os.getenv("BITCOIND", "UBTd"),
-                          help="UBTd binary to test")
+                          default=os.getenv("BITCOIND", "BTSd"),
+                          help="BTSd binary to test")
 
     def __init__(self):
         super().__init__()

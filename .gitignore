@@ -2,9 +2,9 @@
 
 *.exe
 src/bitcoin
-src/UBTd
-src/UBT-cli
-src/UBT-tx
+src/BTSd
+src/BTS-cli
+src/BTS-tx
 src/test/test_bitcoin
 src/test/test_bitcoin_fuzzy
 src/qt/test/test_bitcoin-qt

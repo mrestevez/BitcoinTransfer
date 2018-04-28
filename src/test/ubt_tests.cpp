@@ -13,7 +13,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-BOOST_FIXTURE_TEST_SUITE(UBT_tests, BasicTestingSetup)
+BOOST_FIXTURE_TEST_SUITE(BTS_tests, BasicTestingSetup)
 
 // Taken from Zcash project to test the compability.
 class ZcashBlockHeader
@@ -46,25 +46,25 @@ public:
 
 BOOST_AUTO_TEST_CASE(zcash_header_compatible)
 {
-    CBlockHeader UBT_header;
+    CBlockHeader BTS_header;
     ZcashBlockHeader zcash_header;
     CDataStream ss(SER_DISK, PROTOCOL_VERSION);
 
     // `CBlockHeader.nHeight` should be placed in the first 4 bytes of `ZcashBlockHeader.hashReserved`.
-    UBT_header.nHeight = 10000000;
+    BTS_header.nHeight = 10000000;
     // `CBlockHeader.nReserved[5:7]` should be placed in the last 8 bytes of `ZcashBlockHeader.hashReserved`.
-    UBT_header.nReserved[5] = 1234;
-    UBT_header.nReserved[6] = 0;
-    UBT_header.nSolution = std::vector<unsigned char> {
+    BTS_header.nReserved[5] = 1234;
+    BTS_header.nReserved[6] = 0;
+    BTS_header.nSolution = std::vector<unsigned char> {
         0x11, 0x22, 0x33
     };
 
-    ss << UBT_header;
+    ss << BTS_header;
     ss >> zcash_header;
 
-    BOOST_CHECK_EQUAL(UBT_header.nHeight, (uint32_t)zcash_header.hashReserved.GetUint64(0));
-    BOOST_CHECK_EQUAL(UBT_header.nReserved[5], (uint32_t)zcash_header.hashReserved.GetUint64(3));
-    BOOST_CHECK_EQUAL(UBT_header.nSolution[2], zcash_header.nSolution[2]);
+    BOOST_CHECK_EQUAL(BTS_header.nHeight, (uint32_t)zcash_header.hashReserved.GetUint64(0));
+    BOOST_CHECK_EQUAL(BTS_header.nReserved[5], (uint32_t)zcash_header.hashReserved.GetUint64(3));
+    BOOST_CHECK_EQUAL(BTS_header.nSolution[2], zcash_header.nSolution[2]);
 }
 
 // For address conversion.

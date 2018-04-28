@@ -108,7 +108,7 @@ double GetDifficulty(const CBlockIndex* blockindex)
             blockindex = chainActive.Tip();
     }
 
-    if (blockindex->nHeight >= Params().GetConsensus().UBTHeight)
+    if (blockindex->nHeight >= Params().GetConsensus().BTSHeight)
     {
         return GetDifficultyINTERNAL(blockindex);
     }
@@ -158,7 +158,7 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
         confirmations = chainActive.Height() - blockindex->nHeight + 1;
     result.push_back(Pair("confirmations", confirmations));
     const Consensus::Params& consensusParams = Params().GetConsensus();
-    int ser_flags = (blockindex->nHeight < consensusParams.UBTHeight) ? SERIALIZE_BLOCK_LEGACY : 0;
+    int ser_flags = (blockindex->nHeight < consensusParams.BTSHeight) ? SERIALIZE_BLOCK_LEGACY : 0;
     result.push_back(
         Pair("strippedsize",
              (int)::GetSerializeSize(block, SER_NETWORK,

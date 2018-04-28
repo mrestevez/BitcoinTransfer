@@ -101,7 +101,7 @@ static inline int64_t GetBlockWeight(const CBlock& block, const Consensus::Param
     // using only serialization with and without witness data. As witness_size
     // is equal to total_size - stripped_size, this formula is identical to:
     // weight = (stripped_size * 3) + total_size.
-    int ser_flag = (block.nHeight < (uint32_t)params.UBTHeight) ? SERIALIZE_BLOCK_LEGACY : 0;
+    int ser_flag = (block.nHeight < (uint32_t)params.BTSHeight) ? SERIALIZE_BLOCK_LEGACY : 0;
     return ((::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS | ser_flag)
                 * (WITNESS_SCALE_FACTOR - 1))
             + ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION | ser_flag));

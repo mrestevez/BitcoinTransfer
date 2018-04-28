@@ -15,7 +15,7 @@
 uint256 CBlockHeader::GetHash(const Consensus::Params& params) const
 {
     int version;
-    if (nHeight >= (uint32_t)params.UBTHeight) {
+    if (nHeight >= (uint32_t)params.BTSHeight) {
         version = PROTOCOL_VERSION;
     } else {
         version = PROTOCOL_VERSION | SERIALIZE_BLOCK_LEGACY;

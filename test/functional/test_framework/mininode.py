@@ -54,7 +54,7 @@ NODE_WITNESS = (1 << 3)
 NODE_UNSUPPORTED_SERVICE_BIT_5 = (1 << 5)
 NODE_UNSUPPORTED_SERVICE_BIT_7 = (1 << 7)
 
-UBT_REGTEST_HARDFORK_HEIGHT = 3000
+BTS_REGTEST_HARDFORK_HEIGHT = 3000
 
 logger = logging.getLogger("TestFramework.mininode")
 
@@ -617,7 +617,7 @@ class CBlockHeader(object):
 
     def calc_sha256(self):
         if self.sha256 is None:
-            if self.nHeight < UBT_REGTEST_HARDFORK_HEIGHT:
+            if self.nHeight < BTS_REGTEST_HARDFORK_HEIGHT:
                 r = self.serialize_header(legacy=True)
             else:
                 r = self.serialize_header(legacy=False)

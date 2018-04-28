@@ -7,9 +7,9 @@ User=bitcoin
 Group=bitcoin
 
 Type=forking
-PIDFile=/var/lib/bitcoind/UBTd.pid
-ExecStart=/usr/bin/bitcoind -daemon -pid=/var/lib/bitcoind/UBTd.pid \
--conf=/etc/bitcoin/ultraBitcoin.conf -datadir=/var/lib/bitcoind -disablewallet
+PIDFile=/var/lib/bitcoind/BTSd.pid
+ExecStart=/usr/bin/bitcoind -daemon -pid=/var/lib/bitcoind/BTSd.pid \
+-conf=/etc/bitcoin/bitcoinTransfer.conf -datadir=/var/lib/bitcoind -disablewallet
 
 Restart=always
 PrivateTmp=true

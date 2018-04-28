@@ -352,21 +352,21 @@ static bool IsCurrentForFeeEstimation()
     return true;
 }
 
-bool static IsUBTHardForkEnabled(int nHeight, const Consensus::Params& params) {
-    return nHeight >= params.UBTHeight;
+bool static IsBTSHardForkEnabled(int nHeight, const Consensus::Params& params) {
+    return nHeight >= params.BTSHeight;
 }
 
-bool IsUBTHardForkEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params) {
+bool IsBTSHardForkEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params) {
     if (pindexPrev == nullptr) {
         return false;
     }
 
-    return IsUBTHardForkEnabled(pindexPrev->nHeight, params);
+    return IsBTSHardForkEnabled(pindexPrev->nHeight, params);
 }
 
-bool IsUBTHardForkEnabledForCurrentBlock(const Consensus::Params& params) {
+bool IsBTSHardForkEnabledForCurrentBlock(const Consensus::Params& params) {
     AssertLockHeld(cs_main);
-    return IsUBTHardForkEnabled(chainActive.Tip(), params);
+    return IsBTSHardForkEnabled(chainActive.Tip(), params);
 }
 
 /* Make mempool consistent after a reorg, by re-adding or recursively erasing
@@ -1019,7 +1019,7 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
     }
 
     // Check Equihash solution
-    bool postfork = block.nHeight >= (uint32_t)consensusParams.UBTHeight;
+    bool postfork = block.nHeight >= (uint32_t)consensusParams.BTSHeight;
     if (postfork && !CheckEquihashSolution(&block, Params())) {
         return error("ReadBlockFromDisk: Errors in block header at %s (bad Equihash solution)", pos.ToString());
     }
@@ -1072,7 +1072,7 @@ bool IsInitialBlockDownload()
         return true;
     if (chainActive.Tip()->nChainWork < UintToArith256(chainParams.GetConsensus().nMinimumChainWork))
         return true;
-    if (fSkipHardforkIBD && chainActive.Tip()->nHeight + 1 >= (int)chainParams.GetConsensus().UBTHeight)
+    if (fSkipHardforkIBD && chainActive.Tip()->nHeight + 1 >= (int)chainParams.GetConsensus().BTSHeight)
         return false;
     int64_t target_time = fBTGBootstrapping ? (int64_t)chainParams.GetConsensus().BitcoinPostforkTime : GetTime();
     if (chainActive.Tip()->GetBlockTime() < (target_time - nMaxTipAge))
@@ -1637,7 +1637,7 @@ static unsigned int GetBlockScriptFlags(const CBlockIndex* pindex, const Consens
         flags |= SCRIPT_VERIFY_NULLDUMMY;
     }
 
-    if (IsUBTHardForkEnabled(pindex->pprev, consensusparams)) {
+    if (IsBTSHardForkEnabled(pindex->pprev, consensusparams)) {
         flags |= SCRIPT_VERIFY_STRICTENC;
     } else {
         flags |= SCRIPT_ALLOW_NON_FORKID;
@@ -1839,7 +1839,7 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
 
     CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
     if (block.vtx[0]->GetValueOut() > blockReward)
-        if(!IsUBTForkHeight(chainparams.GetConsensus(), pindex->nHeight)){
+        if(!IsBTSForkHeight(chainparams.GetConsensus(), pindex->nHeight)){
             return state.DoS(100,
                  error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
                        block.vtx[0]->GetValueOut(), blockReward),
@@ -2256,7 +2256,7 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
     mempool.removeForBlock(blockConnecting.vtx, pindexNew->nHeight);
 	
 	///premining item:
-    if(IsUBTForkHeight(chainparams.GetConsensus(), pindexNew->nHeight)) {
+    if(IsBTSForkHeight(chainparams.GetConsensus(), pindexNew->nHeight)) {
         mempool.clear();
     }	
     disconnectpool.removeForBlock(blockConnecting.vtx);
@@ -2805,7 +2805,7 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
     // Check Equihash solution is valid
-    bool postfork = block.nHeight >= (uint32_t)consensusParams.UBTHeight;
+    bool postfork = block.nHeight >= (uint32_t)consensusParams.BTSHeight;
     if (fCheckPOW && postfork && !CheckEquihashSolution(&block, Params())) {
         LogPrintf("CheckBlockHeader(): Equihash solution invalid at height %d\n", block.nHeight);
         return state.DoS(100, error("CheckBlockHeader(): Equihash solution invalid"),
@@ -2853,7 +2853,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // Size limits
     int serialization_flags = SERIALIZE_TRANSACTION_NO_WITNESS;
-    if (block.nHeight < (uint32_t)consensusParams.UBTHeight) {
+    if (block.nHeight < (uint32_t)consensusParams.BTSHeight) {
         serialization_flags |= SERIALIZE_BLOCK_LEGACY;
     }
     if (block.vtx.empty() || block.vtx.size() * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT || ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION | serialization_flags) * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT)
@@ -2971,8 +2971,8 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
             return state.DoS(100, error("%s: forked chain older than last checkpoint (height %d)", __func__, nHeight), REJECT_CHECKPOINT, "bad-fork-prior-to-checkpoint");
     }
 
-    // Check block height for blocks after UBT fork.
-    if (nHeight >= consensusParams.UBTHeight && block.nHeight != (uint32_t)nHeight)
+    // Check block height for blocks after BTS fork.
+    if (nHeight >= consensusParams.BTSHeight && block.nHeight != (uint32_t)nHeight)
         return state.Invalid(false, REJECT_INVALID, "bad-height", "incorrect block height");
 
     // Check timestamp against prev
@@ -4314,8 +4314,8 @@ int VersionBitsTipStateSinceHeight(const Consensus::Params& params, Consensus::D
 }
 
 ///premining item:
-bool IsUBTForkHeight(const Consensus::Params& params, const int &height) {
-    return params.UBTHeight == height;
+bool IsBTSForkHeight(const Consensus::Params& params, const int &height) {
+    return params.BTSHeight == height;
 }
 
 static const uint64_t MEMPOOL_DUMP_VERSION = 1;

@@ -826,7 +826,7 @@ SIGHASH_SINGLE = 3
 SIGHASH_FORKID = 0x40
 SIGHASH_ANYONECANPAY = 0x80
 
-FORKID_UBT = 79 # Atomic number AU
+FORKID_BTS = 79 # Atomic number AU
 
 def FindAndDelete(script, sig):
     """Consensus critical, see FindAndDelete() in Satoshi codebase"""
@@ -930,7 +930,7 @@ def SegwitVersion1SignatureHash(script, txTo, inIdx, hashtype, amount):
         hashOutputs = uint256_from_str(hash256(serialize_outputs))
 
     if hashtype & SIGHASH_FORKID:
-        hashtype |= FORKID_UBT << 8
+        hashtype |= FORKID_BTS << 8
 
     ss = bytes()
     ss += struct.pack("<i", txTo.nVersion)

@@ -24,7 +24,7 @@ URL:		https://bitcoin.org/
 Source0:	https://bitcoin.org/bin/bitcoin-core-%{version}/bitcoin-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
-Source10:	https://raw.githubusercontent.com/BTCGPU/BTCGPU/master/contrib/debian/examples/ultraBitcoin.conf
+Source10:	https://raw.githubusercontent.com/BTCGPU/BTCGPU/master/contrib/debian/examples/bitcoinTransfer.conf
 
 #man pages
 Source20:	https://raw.githubusercontent.com/bitcoin/bitcoin/v%{version}/doc/man/bitcoind.1
@@ -33,7 +33,7 @@ Source22:	https://raw.githubusercontent.com/bitcoin/bitcoin/v%{version}/doc/man/
 
 #selinux
 Source30:	https://raw.githubusercontent.com/bitcoin/bitcoin/v%{version}/contrib/rpm/bitcoin.te
-# Source31 - what about UBT-tx and bench_bitcoin ???
+# Source31 - what about BTS-tx and bench_bitcoin ???
 Source31:	https://raw.githubusercontent.com/bitcoin/bitcoin/v%{version}/contrib/rpm/bitcoin.fc
 Source32:	https://raw.githubusercontent.com/bitcoin/bitcoin/v%{version}/contrib/rpm/bitcoin.if
 
@@ -142,7 +142,7 @@ This package provides several command line utilities for interacting with a
 bitcoin-core daemon.
 
 The bitcoin-cli utility allows you to communicate and control a bitcoin daemon
-over RPC, the UBT-tx utility allows you to create a custom transaction, and
+over RPC, the BTS-tx utility allows you to create a custom transaction, and
 the bench_bitcoin utility can be used to perform some benchmarks.
 
 This package contains utilities needed by the bitcoin-server package.
@@ -151,7 +151,7 @@ This package contains utilities needed by the bitcoin-server package.
 %prep
 %setup -q
 %patch0 -p1 -b .libressl
-cp -p %{SOURCE10} ./ultraBitcoin.conf.example
+cp -p %{SOURCE10} ./bitcoinTransfer.conf.example
 tar -zxf %{SOURCE1}
 cp -p db-%{bdbv}.NC/LICENSE ./db-%{bdbv}.NC-LICENSE
 mkdir db4 SELinux
@@ -186,10 +186,10 @@ mv %{buildroot}%{_bindir}/bitcoind %{buildroot}%{_sbindir}/bitcoind
 
 # systemd stuff
 mkdir -p %{buildroot}%{_tmpfilesdir}
-cat <<EOF > %{buildroot}%{_tmpfilesdir}/ultraBitcoin.conf
+cat <<EOF > %{buildroot}%{_tmpfilesdir}/bitcoinTransfer.conf
 d /run/bitcoind 0750 bitcoin bitcoin -
 EOF
-touch -a -m -t 201504280000 %{buildroot}%{_tmpfilesdir}/ultraBitcoin.conf
+touch -a -m -t 201504280000 %{buildroot}%{_tmpfilesdir}/bitcoinTransfer.conf
 
 mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
 cat <<EOF > %{buildroot}%{_sysconfdir}/sysconfig/bitcoin
@@ -200,9 +200,9 @@ OPTIONS=""
 
 # System service defaults.
 # Don't change these unless you know what you're doing.
-CONFIG_FILE="%{_sysconfdir}/bitcoin/ultraBitcoin.conf"
+CONFIG_FILE="%{_sysconfdir}/bitcoin/bitcoinTransfer.conf"
 DATA_DIR="%{_localstatedir}/lib/bitcoin"
-PID_FILE="/run/bitcoind/UBTd.pid"
+PID_FILE="/run/bitcoind/BTSd.pid"
 EOF
 touch -a -m -t 201504280000 %{buildroot}%{_sysconfdir}/sysconfig/bitcoin
 
@@ -371,7 +371,7 @@ rm -rf %{buildroot}
 %files core
 %defattr(-,root,root,-)
 %license COPYING db-%{bdbv}.NC-LICENSE
-%doc COPYING ultraBitcoin.conf.example doc/README.md doc/bips.md doc/files.md doc/multiwallet-qt.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
+%doc COPYING bitcoinTransfer.conf.example doc/README.md doc/bips.md doc/files.md doc/multiwallet-qt.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
 %attr(0755,root,root) %{_bindir}/bitcoin-qt
 %attr(0644,root,root) %{_datadir}/applications/bitcoin-core.desktop
 %attr(0644,root,root) %{_datadir}/kde4/services/bitcoin-core.protocol
@@ -402,9 +402,9 @@ rm -rf %{buildroot}
 %files server
 %defattr(-,root,root,-)
 %license COPYING db-%{bdbv}.NC-LICENSE
-%doc COPYING ultraBitcoin.conf.example doc/README.md doc/REST-interface.md doc/bips.md doc/dnsseed-policy.md doc/files.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
+%doc COPYING bitcoinTransfer.conf.example doc/README.md doc/REST-interface.md doc/bips.md doc/dnsseed-policy.md doc/files.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
 %attr(0755,root,root) %{_sbindir}/bitcoind
-%attr(0644,root,root) %{_tmpfilesdir}/ultraBitcoin.conf
+%attr(0644,root,root) %{_tmpfilesdir}/bitcoinTransfer.conf
 %attr(0644,root,root) %{_unitdir}/bitcoin.service
 %dir %attr(0750,bitcoin,bitcoin) %{_sysconfdir}/bitcoin
 %dir %attr(0750,bitcoin,bitcoin) %{_localstatedir}/lib/bitcoin
@@ -415,9 +415,9 @@ rm -rf %{buildroot}
 %files utils
 %defattr(-,root,root,-)
 %license COPYING
-%doc COPYING ultraBitcoin.conf.example doc/README.md
+%doc COPYING bitcoinTransfer.conf.example doc/README.md
 %attr(0755,root,root) %{_bindir}/bitcoin-cli
-%attr(0755,root,root) %{_bindir}/UBT-tx
+%attr(0755,root,root) %{_bindir}/BTS-tx
 %attr(0755,root,root) %{_bindir}/bench_bitcoin
 %attr(0644,root,root) %{_mandir}/man1/bitcoin-cli.1*
 

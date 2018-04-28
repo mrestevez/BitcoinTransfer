@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>ultraBitcoin-Qt</string>
+  <string>bitcoinTransfer-Qt</string>
   
   <key>CFBundleName</key>
-  <string>ultraBitcoin-Qt</string>
+  <string>bitcoinTransfer-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.ultraBitcoinpu.ultraBitcoin-Qt</string>
+  <string>org.bitcoinTransferpu.bitcoinTransfer-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>

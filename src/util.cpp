@@ -87,8 +87,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "ultraBitcoin.conf";
-const char * const BITCOIN_PID_FILENAME = "UBTd.pid";
+const char * const BITCOIN_CONF_FILENAME = "bitcoinTransfer.conf";
+const char * const BITCOIN_PID_FILENAME = "BTSd.pid";
 
 ArgsManager gArgs;
 bool fPrintToConsole = false;
@@ -525,13 +525,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\ultraBitcoin
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\ultraBitcoin
-    // Mac: ~/Library/Application Support/ultraBitcoin
-    // Unix: ~/.ultraBitcoin
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\bitcoinTransfer
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\bitcoinTransfer
+    // Mac: ~/Library/Application Support/bitcoinTransfer
+    // Unix: ~/.bitcoinTransfer
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "ultraBitcoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "bitcoinTransfer";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -541,10 +541,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/ultraBitcoin";
+    return pathRet / "Library/Application Support/bitcoinTransfer";
 #else
     // Unix
-    return pathRet / ".ultraBitcoin";
+    return pathRet / ".bitcoinTransfer";
 #endif
 #endif
 }
@@ -603,7 +603,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 {
     fs::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good())
-        return; // No ultraBitcoin.conf file is OK
+        return; // No bitcoinTransfer.conf file is OK
 
     {
         LOCK(cs_args);
@@ -612,7 +612,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 
         for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
         {
-            // Don't overwrite existing settings so command line settings override ultraBitcoin.conf
+            // Don't overwrite existing settings so command line settings override bitcoinTransfer.conf
             std::string strKey = std::string("-") + it->string_key;
             std::string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);

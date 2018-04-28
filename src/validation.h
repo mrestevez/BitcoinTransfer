@@ -316,8 +316,8 @@ BIP9Stats VersionBitsTipStatistics(const Consensus::Params& params, Consensus::D
 int VersionBitsTipStateSinceHeight(const Consensus::Params& params, Consensus::DeploymentPos pos);
 
 ///premining item:
-/** check whether is UBT fork height */
-bool IsUBTForkHeight(const Consensus::Params& params, const int &height);
+/** check whether is BTS fork height */
+bool IsBTSForkHeight(const Consensus::Params& params, const int &height);
 
 
 /** Apply the effects of this transaction on the UTXO set represented by view */

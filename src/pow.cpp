@@ -18,16 +18,16 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 {
     assert(pindexLast != nullptr);
     int nHeight = pindexLast->nHeight + 1;
-    bool postfork = nHeight >= params.UBTHeight;
+    bool postfork = nHeight >= params.BTSHeight;
     unsigned int nProofOfWorkLimit = UintToArith256(params.PowLimit(postfork)).GetCompact();
 
     if (postfork == false) {
-        return ultraBitcoinetNextWorkRequired(pindexLast, pblock, params);
+        return bitcoinTransferetNextWorkRequired(pindexLast, pblock, params);
     }
-    else if (nHeight < params.UBTHeight + params.UBTPremineWindow) {
+    else if (nHeight < params.BTSHeight + params.BTSPremineWindow) {
         return nProofOfWorkLimit;
     }
-    else if (nHeight < params.UBTHeight + params.UBTPremineWindow + params.nPowAveragingWindow){
+    else if (nHeight < params.BTSHeight + params.BTSPremineWindow + params.nPowAveragingWindow){
         return UintToArith256(params.powLimitStart).GetCompact();
     }
     
@@ -74,7 +74,7 @@ unsigned int CalculateNextWorkRequired(arith_uint256 bnAvg, int64_t nLastBlockTi
 
 
 // Deprecated for Bitcoin Ultra
-unsigned int ultraBitcoinetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
+unsigned int bitcoinTransferetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
     assert(pindexLast != nullptr);
     unsigned int nProofOfWorkLimit = UintToArith256(params.PowLimit(false)).GetCompact();

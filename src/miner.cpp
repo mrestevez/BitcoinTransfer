@@ -173,7 +173,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     addPackageTxs(nPackagesSelected, nDescendantsUpdated);
 
     ///premining item:
-    if(!IsUBTForkHeight(chainparams.GetConsensus(), nHeight)) {
+    if(!IsBTSForkHeight(chainparams.GetConsensus(), nHeight)) {
         addPackageTxs(nPackagesSelected, nDescendantsUpdated);
     }
 
@@ -189,7 +189,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
     ///premining item:
-    if(IsUBTForkHeight(chainparams.GetConsensus(), nHeight)) {
+    if(IsBTSForkHeight(chainparams.GetConsensus(), nHeight)) {
         chainparams.GetScriptForPreMining(coinbaseTx.vout[0].scriptPubKey);
         coinbaseTx.vout[0].nValue = 210000*COIN;
     }else {
@@ -202,13 +202,13 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblocktemplate->vTxFees[0] = -nFees;
 
     const Consensus::Params& params = chainparams.GetConsensus();
-    int ser_flags = (nHeight < params.UBTHeight) ? SERIALIZE_BLOCK_LEGACY : 0;
+    int ser_flags = (nHeight < params.BTSHeight) ? SERIALIZE_BLOCK_LEGACY : 0;
     uint64_t nSerializeSize = GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION | ser_flags);
     LogPrintf("CreateNewBlock(): total size: %u block weight: %u txs: %u fees: %ld sigops %d\n",
               nSerializeSize, GetBlockWeight(*pblock, chainparams.GetConsensus()), nBlockTx, nFees, nBlockSigOpsCost);
 
     arith_uint256 nonce;
-    if (nHeight >= params.UBTHeight) {
+    if (nHeight >= params.BTSHeight) {
         // Randomise nonce for new block foramt.
         nonce = UintToArith256(GetRandHash());
         // Clear the top and bottom 16 bits (for local use as thread flags and counters)

@@ -8,7 +8,7 @@ from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import *
 
 
-class UBTForkTest(BitcoinTestFramework):
+class BTSForkTest(BitcoinTestFramework):
 
     def __init__(self):
         super().__init__()
@@ -32,4 +32,4 @@ class UBTForkTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    UBTForkTest().main()
+    BTSForkTest().main()

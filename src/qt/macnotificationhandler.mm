@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.ultraBitcoinpu.ultraBitcoin-Qt";
+        return @"org.bitcoinTransferpu.bitcoinTransfer-Qt";
     } else {
         return [self __bundleIdentifier];
     }

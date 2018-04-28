@@ -1,17 +1,16 @@
-// Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2010 Satoshi Nakamoto // Copyright (c) 2009-2016 The Bitcoin Core developers // Distributed under the MIT software license, see the accompanying // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "chainparams.h"
+#include "chainparams.h" 
 #include "consensus/merkle.h"
 
-#include "uint256.h"
+#include "uint256.h" 
 #include "arith_uint256.h"
 
-#include "tinyformat.h"
-#include "util.h"
+#include "tinyformat.h" 
+#include "util.h" 
 #include "utilstrencodings.h"
+
+
 
 // For equihash_parameters_acceptable.
 #include "crypto/equihash.h"
@@ -103,45 +102,47 @@ public:
         consensus.BIP34Hash = uint256S("0x000000000000024b89b42a942fe0d9fea3bb44ab7bd1b19115dd6a759c0808b8");
         consensus.BIP65Height = 388381; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 363725; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
-        //consensus.UBTHeight = 491407; // Around 10/25/2017 12:00 UTC
-        consensus.UBTPremineWindow = 8000;
-        consensus.UBTPremineEnforceWhitelist = true;
+        //consensus.BTSHeight = 491407; // Around 10/25/2017 12:00 UTC
+        consensus.BTSPremineWindow = 8000;
+        consensus.BTSPremineEnforceWhitelist = true;
 
         //test hard fork
         // //------------------------------------------------------------------------------------------------------
         // ///point to height Block #491407
-        // consensus.UBTHeight = 491407; 
+        // consensus.BTSHeight = 491407; 
         // consensus.BitcoinPostforkBlock = uint256S("000000000000000000e5438564434edaf41e63829a637521a96235adf4653e1b");
         // consensus.BitcoinPostforkTime = 1508808039;
         // //------------------------------------------------------------------------------------------------------
 
         // //------------------------------------------------------------------------------------------------------
         // ///point to height Block #500000
-        // consensus.UBTHeight = 500000; 
+        // consensus.BTSHeight = 500000; 
         // consensus.BitcoinPostforkBlock = uint256S("00000000000000000024fb37364cbf81fd49cc2d51c09c75c35433c3a1945d04");
         // consensus.BitcoinPostforkTime = 1513593325;     
         // //------------------------------------------------------------------------------------------------------
 
         // //------------------------------------------------------------------------------------------------------
         // ///point to height Block #100000
-        // consensus.UBTHeight = 100000; 
+        // consensus.BTSHeight = 100000; 
         // consensus.BitcoinPostforkBlock = uint256S("000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506");
         // consensus.BitcoinPostforkTime = 1293595063;     
         // //------------------------------------------------------------------------------------------------------     
 
         // //------------------------------------------------------------------------------------------------------
         // ///point to height Block #502151
-        // consensus.UBTHeight = 502151; 
-        // consensus.BitcoinPostforkBlock = uint256S("00000000000000000051bea3ccf035931054d5609b2a8174e0651658563e2812");
-        // consensus.BitcoinPostforkTime = 1514835578;     
+         consensus.BTSHeight = 502151; 
+         consensus.BitcoinPostforkBlock = uint256S("00000000000000000051bea3ccf035931054d5609b2a8174e0651658563e2812");
+         consensus.BitcoinPostforkTime = 1514835578;     
         // //------------------------------------------------------------------------------------------------------             
 
         //------------------------------------------------------------------------------------------------------
         ///point to height Block #503888
-        consensus.UBTHeight = 502097;
-        consensus.BitcoinPostforkBlock = uint256S("0000000000000000006409f9ec7d34cf44dd0d857cb238b86c417bc48b4e4423");
-        consensus.BitcoinPostforkTime = 1514809592;
+  //      consensus.BTSHeight = 386176;//502097;
+  //      consensus.BitcoinPostforkBlock = uint256S("00000000000000000a92720c2d8096b0b0e75d98d708f6e89a34a8461fdc6194");
+  //      consensus.BitcoinPostforkTime = 1448950522;
         //------------------------------------------------------------------------------------------------------             
+
+
 
         consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.powLimitStart = uint256S("0000000fffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -193,7 +194,7 @@ public:
         pchMessageStart[1] = 0x41;
         pchMessageStart[2] = 0x6f;
         pchMessageStart[3] = 0x12;
-        nDefaultPort = 8888; // ultraBitcoin, different port than Bitcoin
+        nDefaultPort = 9991; // bitcoinTransfer, different port than Bitcoin
         nBitcoinDefaultPort = 8333;
         nPruneAfterHeight = 100000;
         const size_t N = 200, K = 9;
@@ -211,9 +212,9 @@ public:
         // nodes with support for servicebits filtering should be at the top
         // TODO: Shall change this to our
         //ubt's
-        vSeeds.emplace_back("173.249.21.65", false);
-        vSeeds.emplace_back("173.212.248.173", false);
-        vSeeds.emplace_back("173.249.22.50", false);
+        vSeeds.emplace_back("173.249.3.147", false);
+        vSeeds.emplace_back("139.59.177.221", false);
+       // vSeeds.emplace_back("173.249.22.50", false);
         //vSeeds.emplace_back("173.249.22.49", false);
 
         //btc's
@@ -225,11 +226,11 @@ public:
         // vSeeds.emplace_back("seed.btc.petertodd.org", true); // Peter Todd, only supports x1, x5, x9, and xd
 
         //btg's
-        // vSeeds.emplace_back("eu-dnsseed.ultraBitcoin-official.org", true);
-        // vSeeds.emplace_back("dnsseed.ultraBitcoin.org", true);
+        // vSeeds.emplace_back("eu-dnsseed.bitcoinTransfer-official.org", true);
+        // vSeeds.emplace_back("dnsseed.bitcoinTransfer.org", true);
         // vSeeds.emplace_back("dnsseed.btcgpu.org", true);
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,68);  // prefix: U
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,25);  // prefix: U
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,28);  // prefix: C
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
@@ -255,7 +256,7 @@ public:
                 {225430, uint256S("0x00000000000001c108384350f74090433e7fcf79a606b8e797f065b130575932")},
                 {250000, uint256S("0x000000000000003887df1f29024b06fc2200b55f8af8f35453d7be294df2d214")},
                 {279000, uint256S("0x0000000000000001ae8c72a0b0c301f67e3afca10e819efa9041e458e9bd7e40")},
-                {295000, uint256S("0x00000000000000004d9b4ef50f0f9d686fd69db2e03af35a100370c64632a983")},
+                {295000, uint256S("0x00000000000000004d9b4ef50f0f9d686fd69db2e03af35a100370c64632a983")},     
             }
         };
 
@@ -268,7 +269,7 @@ public:
         };
 
         ///premining item:
-        preMinerAddres = "UbTkkXejv3QzbmWQt7UoBtANEcoCH8xbMk";
+        preMinerAddres = "BTEViuu5ujLEJWYdNMLzfoHt8F4BoigxA3";
     }
 };
 
@@ -284,9 +285,9 @@ public:
         consensus.BIP34Hash = uint256S("0x0000000023b3a96d3484e5abb3755c413e7d41500f8e2a5c3f0dd01299cd8ef8");
         consensus.BIP65Height = 581885; // 00000000007f6655f22f98e72ed80d8b06dc761d5da09df0fa1dc4be4f861eb6
         consensus.BIP66Height = 330776; // 000000002104c8c45e99a8853285a3b592602a3ccde2b832481da85e9e4ba182
-        consensus.UBTHeight = 1210320;
-        consensus.UBTPremineWindow = 50;
-        consensus.UBTPremineEnforceWhitelist = false;
+        consensus.BTSHeight = 1210320;
+        consensus.BTSPremineWindow = 50;
+        consensus.BTSPremineEnforceWhitelist = false;
         consensus.BitcoinPostforkBlock = uint256S("00000000ef93c2d9bac8da61ff11a699a5b815f77a194c567c5de0dbdf0bf28b");
         consensus.BitcoinPostforkTime = 1508111338;        
         consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -363,8 +364,8 @@ public:
         vSeeds.emplace_back("173.249.22.49", false);
 		                
         //btg's
-        // vSeeds.emplace_back("eu-test-dnsseed.ultraBitcoin-official.org", true);
-        // vSeeds.emplace_back("test-dnsseed.ultraBitcoin.org", true);
+        // vSeeds.emplace_back("eu-test-dnsseed.bitcoinTransfer-official.org", true);
+        // vSeeds.emplace_back("test-dnsseed.bitcoinTransfer.org", true);
         // vSeeds.emplace_back("test-dnsseed.btcgpu.org", true);
         // vSeeds.emplace_back("btg.dnsseed.minertopia.org", true);
 
@@ -410,9 +411,9 @@ public:
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 1351; // BIP65 activated on regtest (Used in rpc activation tests)
         consensus.BIP66Height = 1251; // BIP66 activated on regtest (Used in rpc activation tests)
-        consensus.UBTHeight = 3000;
-        consensus.UBTPremineWindow = 10;
-        consensus.UBTPremineEnforceWhitelist = false;
+        consensus.BTSHeight = 3000;
+        consensus.BTSPremineWindow = 10;
+        consensus.BTSPremineEnforceWhitelist = false;
         consensus.BitcoinPostforkBlock = uint256();
         consensus.BitcoinPostforkTime = 0;        
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");

@@ -24,7 +24,7 @@ def sig(x):
         return 0
 
 
-class UBTTimeLockTest(BitcoinTestFramework):
+class BTSTimeLockTest(BitcoinTestFramework):
 
     def __init__(self):
         super().__init__()
@@ -121,4 +121,4 @@ class UBTTimeLockTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    UBTTimeLockTest().main()
+    BTSTimeLockTest().main()
